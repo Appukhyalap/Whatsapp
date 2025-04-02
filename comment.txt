@@ -1,0 +1,19 @@
+socket.io => it is a javascript library used for real-time web application. And it is a instance of HTTP and it will connects to instance of HTTP.
+(socket.on) => means // it decide what to do whenever the things happened with the particular connection.
+web socket will give notification when it receives the updates 
+TTP long-polling fallback => The connection will fall back to HTTP long-polling in case the WebSocket connection cannot be established.
+1. node server and website are different
+to connect client and server to add script src = "http://localhost:8000/socket.io/socket.io.js" or "https://cdn.socket.io/4.0.0/socket.io.min.jsbefore" the server connection 
+to install nodemon: npm i nodemon
+defer : means the script will run in background and it will run only when load the DOM
+
+socket.on() => Used to receive messages/data from the server or other clients.
+Takes two arguments:
+eventName (string) – The name of the event to listen for (e.g., "message", "user-connected").
+callback (function) – Runs when the event is received.
+
+socket.emit() => Used to send messages/data to the server or other connected clients.
+Takes two arguments:
+eventName (string) – The name of the event (e.g., "send-message").
+data (optional) – The payload (message, object, etc.).
+
