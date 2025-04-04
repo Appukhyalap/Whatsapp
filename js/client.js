@@ -1,5 +1,6 @@
-const socket = io("http://localhost:5500");
 
+const socket = io("http://localhost:5500");
+        
 // DOM elements
 const form = document.getElementById("send-container");
 const messageInp = document.getElementById("messageInp");
@@ -7,8 +8,9 @@ const messageContainer = document.querySelector(".container");
 const typingIndicator = document.getElementById("typing-indicator");
 const typingText = document.getElementById("typing-text");
 
-// Typing timeout variable
+// Variables
 let typingTimeout;
+let currentUsername = "";
 
 // Append message to chat
 const append = (message, position) => {
@@ -44,8 +46,8 @@ messageInp.addEventListener("input", () => {
 });
 
 // Get username and join chat
-const name = prompt("Enter your name to join") || "Anonymous";
-socket.emit("new-user-joined", name);
+currentUsername = prompt("Enter your name to join") || "Anonymous";
+socket.emit("new-user-joined", currentUsername);
 
 // Socket event handlers
 socket.on("user-joined", name => {
@@ -61,16 +63,14 @@ socket.on("left", name => {
 });
 
 socket.on("user-typing", name => {
-    typingText.textContent = name;
-    typingIndicator.style.display = "block";
-    messageContainer.scrollTop = messageContainer.scrollHeight;
+    if (name !== currentUsername) {
+        typingText.textContent = `${name} is typing...`;
+        typingIndicator.style.display = "block";
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
 });
 
 socket.on("user-stopped-typing", () => {
     typingIndicator.style.display = "none";
 });
 
-// Focus input field on load
-window.addEventListener("load", () => {
-    messageInp.focus();
-});
