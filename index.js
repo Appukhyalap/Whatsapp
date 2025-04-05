@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "*", // Allow all origins (modify for security)
+        origin: "https://whatsapp-1-qsax.onrender.com", // Allow all origins (modify for security)
         methods: ["GET", "POST"]
     }
 });
@@ -59,6 +59,7 @@ io.on("connection", (socket) => {
 
 // Start server
 const PORT = 5500;
+const hostname = 'localhost' ;
 server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://${hostname}:${PORT}`);
 });

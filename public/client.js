@@ -1,5 +1,5 @@
 
-const socket = io("http://localhost:5500");
+const socket = io("https://whatsapp-1-qsax.onrender.com");
         
 // DOM elements
 const form = document.getElementById("send-container");
