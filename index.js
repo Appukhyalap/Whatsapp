@@ -15,6 +15,10 @@ const io = socketIo(server, {
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 const users = {};
 
 // Handle socket connection
@@ -51,6 +55,7 @@ io.on("connection", (socket) => {
         }
     });
 });
+
 
 // Start server
 const PORT = 5500;
